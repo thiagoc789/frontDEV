@@ -1,0 +1,65 @@
+{
+	"navigation": [
+		{
+			"title": "Temporadas",
+			"icon": "sap-icon://timesheet",
+			"expanded": false,
+			"key": "Temporadas"
+		},
+		{
+			"title": "Usuarios",
+			"icon": "sap-icon://user-settings",
+			"expanded": false,
+			"key": "Usuarios"
+
+		},
+		{
+			"title": "Evaluaciones",
+			"icon": "sap-icon://approvals",
+			"expanded": false,
+			"key": "Evaluaciones"
+
+		},
+		{
+			"title": "Empleados",
+			"icon": "sap-icon://employee-pane",
+			"expanded": false,
+			"key": "Empleados"
+
+		},
+		{
+			"title": "Nueva Evaluación",
+			"icon": "sap-icon://add-activity",
+			"expanded": false,
+			"key": "Nueva_Evaluacion"
+
+		}
+	],
+	"fixedNavigation": [
+		{
+			"title": "Instrucciones",
+			"icon": "sap-icon://receipt"
+		},
+		{
+			"title": "Terminos de uso",
+			"icon": "sap-icon://document-text"
+		}
+	],
+	"headerItems": [
+		{
+			"text": "File"
+		},
+		{
+			"text": "Edit"
+		},
+		{
+			"text": "View"
+		},
+		{
+			"text": "Settings"
+		},
+		{
+			"text": "Help"
+		}
+	]
+}

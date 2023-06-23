@@ -1,0 +1,49 @@
+<mvc:View
+    controllerName="evaluatorweb.controller.Principal"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+	xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+>
+    <l:VerticalLayout id="_IDGenVerticalLayout2"
+		class="sapUiContentPadding"
+		width="100%">
+    </l:VerticalLayout>  
+     <l:VerticalLayout id="_IDGenVerticalLayout3"
+		class="sapUiContentPadding"
+		width="100%">
+    </l:VerticalLayout>  
+     <l:VerticalLayout id="_IDGenVerticalLayout4"
+		class="sapUiContentPadding"
+		width="100%">
+    </l:VerticalLayout>  
+     <l:VerticalLayout id="_IDGenVerticalLayout5"
+		class="sapUiContentPadding"
+		width="100%">
+    </l:VerticalLayout>
+     <l:VerticalLayout id="_IDGenVerticalLayout6"
+		class="sapUiContentPadding"
+		width="100%">
+    </l:VerticalLayout>  
+     <l:VerticalLayout id="_IDGenVerticalLayout7"
+		class="sapUiContentPadding"
+		width="100%">
+    </l:VerticalLayout>  
+     <l:VerticalLayout id="_IDGenVerticalLayout8"
+		class="sapUiContentPadding"
+		width="100%">
+    </l:VerticalLayout>    
+
+	<l:VerticalLayout id="_IDGenVerticalLayout1"
+		class="sapUiContentPadding"
+		width="100%">
+        
+        <l:content>
+            <core:HTML id="_IDGenHTML1" content='&lt;div style="display: flex; justify-content: center; align-items: center;"&gt;&lt;img src="/images/logo-isc.png" alt="Logo ISC" width="400" height="400"&gt;&lt;/div&gt;' />
+        </l:content>
+	</l:VerticalLayout>
+</mvc:View>

@@ -1,0 +1,21 @@
+<mvc:View
+    controllerName="evaluatorweb.controller.Temporadas"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    displayBlock="true"
+>
+    
+        <List
+            id="Mylist"
+            items="{odataModel>/Season}"
+        >
+            <items>
+                <ObjectListItem
+                    id="myObjectListItem"
+                    title="{odataModel>id}"
+                    intro="{odataModel>year}"
+                />
+            </items>
+        </List>
+
+</mvc:View>

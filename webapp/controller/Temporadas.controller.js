@@ -8,40 +8,32 @@ sap.ui.define([
     return Controller.extend("evaluatorweb.controller.Temporadas", {
 
         onInit: function () {
-            var that = this; // Almacena una referencia a 'this'
-          
+            var that = this;
+
             this.bExisteTemporadaAbierta = false;
             var oModel = this.getOwnerComponent().getModel();
-            console.log(this.bExisteTemporadaAbierta);
-            
+
             oModel.read("/Season", {
-              success: function (oData) {
-                console.log(oData.results);
-                var aTemporadas = oData.results;
-          
-                for (var i = 0; i < aTemporadas.length; i++) {
-                  if (aTemporadas[i].status === "abierta") {
-                    that.bExisteTemporadaAbierta = true;
-                    console.log('si hay abiertas');
-                    break;
-                  } else {
-                    console.log('no hay abiertas');
-                  }
+                success: function (oData) {
+                    var aTemporadas = oData.results;
+
+                    for (var i = 0; i < aTemporadas.length; i++) {
+                        if (aTemporadas[i].status === "abierta") {
+                            that.bExisteTemporadaAbierta = true;
+
+                            break;
+                        } else {
+
+                        }
+                    }
+                },
+                error: function (oError) {
+
                 }
-                
-                console.log(that.bExisteTemporadaAbierta);
-              },
-              error: function (oError) {
-                // Manejo de errores
-              }
             });
-          
-            console.log(this.bExisteTemporadaAbierta);
-          },
-          
-            
-        
-        // el resto de tu código de controlador aquí
+
+        },
+
 
         onButtonPress: function (oEvent) {
             var oModel = this.getView().getModel();
@@ -64,14 +56,15 @@ sap.ui.define([
                         oModel.update(sPath, {
                             status: sNewStatus
                         }, {
-                            success: function() {
+                            success: function () {
                                 MessageToast.show("Estado actualizado exitosamente");
                                 if (sNewStatus === "abierta") {
                                     this.bExisteTemporadaAbierta = true;
                                 } else {
                                     this.bExisteTemporadaAbierta = false;
-                                }                            }.bind(this),
-                            error: function() {
+                                }
+                            }.bind(this),
+                            error: function () {
                                 MessageToast.show("Error al actualizar el estado");
                             }
                         });
@@ -91,10 +84,10 @@ sap.ui.define([
                     if (sButton === MessageBox.Action.OK) {
                         // Elimina la temporada
                         oModel.remove(sPath, {
-                            success: function() {
+                            success: function () {
                                 MessageToast.show("Temporada eliminada exitosamente");
                             },
-                            error: function() {
+                            error: function () {
                                 MessageToast.show("Error al eliminar la temporada");
                             }
                         });

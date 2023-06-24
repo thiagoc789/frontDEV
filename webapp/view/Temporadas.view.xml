@@ -77,13 +77,6 @@
                                 text="{= ${status} === 'abierta' ? 'Cerrar' : 'Abrir'}"
                                 press=".onButtonPress"
                             >
-                                <customData>
-                                    <core:CustomData
-                                        key="status"
-                                        value="{status}"
-                                        writeToDom="true"
-                                    />
-                                </customData>
                             </Button>
                             <Button
                                 id="buttonEliminar"

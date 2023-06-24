@@ -1,148 +1,3 @@
-.mySpacerClass {
-    background-color: #0ec2f08e !important;
-}
-.myIconTabBar .sapMITBHead {
-    background-color: #0ec3f069;
-    color: white;
-    font-weight: bold;
-}
-  
-.myIconTabBar .sapMITBText {
-    font-size: 14px;
-}
-  
-.myIconTabBar .sapMITBSelected {
-    color: #1E90FF;
-}
-
-.myIconTabBar .sapMITBFilter {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.myIconTabBar .sapMITBFilter {
-    transition: background-color 0.5s ease-in-out;
-}
-  
-.myIconTabBar .sapMITBSelected {
-    background-color: #1e8fff3e;
-    color: white;
-}
-
-.myCustomTable .sapMListTblHeaderCell, 
-.myCustomTable .sapMListTblCell {
-  border-bottom: 1px solid gray;
-  padding: 5px;
-  text-align: center;
-}
-
-.myCustomTable .sapMListTblHeaderCell {
-  background-color: #F0F0F0;
-  font-weight: bold;
-}
-
-:root {
-    --dark-blue: #1c2331;
-    --white: #ffffff;
-    --light-blue: #4da1ff;
-}
-
-.miClasePersonalizada .sapMSideNavigation {
-    background-color: var(--dark-blue);
-}
-  
-.miClasePersonalizada .sapMSideNavigationHeader {
-    background-color: var(--light-blue);
-}
-  
-.miClasePersonalizada .sapMSideNavigationList {
-    background-color: var(--white);
-}
-  
-
-.miClasePersonalizada .sapMSideNavigationListItem {
-    color: var(--dark-blue);
-}
-  
-.miClasePersonalizada .sapMSideNavigationListItem:hover {
-    background-color: var(--light-blue);
-    color: var(--white);
-}
-
-.backgroundPage {
-    background-image: url("ruta_de_la_imagen.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-.backgroundImageStyle {
-    height: 100%;
-}
-
-.miClasePersonalizada {
-    background-color: red; /* Cambia "red" al color deseado */
-}
-
-.prueba {
-    border: 2px solid #ff0000;
-}
-
-.LabelWithInput {
-    padding: 10px 0px 10px 20px;
-}
-
-.inputRange {
-    padding: 0px 4px 4px 4px;
-    border-bottom: 1px solid #5899DA;
-    border-radius: 10px;
-}
-
-.inputRangeWithoutButton{
-    gap: 10px;
-    width: 100%;
-}
-
-.CamposObligatorios {
-    padding: 4px 4px 0px 4px;
-    border-bottom: 1px solid #5899DA;
-    border-radius: 10px;
-}
-
-.panelPrincipal {
-    padding: 8px 10px 8px 10px;
-    gap: 10px;
-    background: #ECECEC;
-}
-
-.cabecera {
-    padding: 10px 10px 10px 30px;
-    border-bottom: 2px solid #5899DA;
-}
-
-.labelWithSwitch {
-    padding: 4px 2px 0px 8px;
-    border-bottom: 1px solid #5899DA;
-    border-radius: 10px;
-}
-
-.panelSwitches {
-    padding: 4px 4px 4px 20px;
-    gap: 15px;
-
-}
-
-.panelDatos {
-    padding: 10px 4px 20px 4px;
-    border-radius: 8px;
-}
-
-.boton-flotante {
-    position: fixed;
-    bottom: 16px;
-    right: 16px;
-    z-index: 1000;
-}
-  
 
 .statusAbierto {
     color: green;
@@ -158,5 +13,18 @@
 
 [data-status="cerrada"] {
     color: red;
+}
+
+.labid {
+    padding-left: 1em;
+    margin-left: 1em;
+}
+
+.dialogButton{
+    margin-right: 1em;
+}
+
+.LabelWithInput{
+    margin-top: 0.5em;
 }
 

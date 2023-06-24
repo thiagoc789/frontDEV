@@ -7,9 +7,95 @@
     xmlns:flexbox="sap.m"
     displayBlock="true"
 >
+    <Toolbar id="toolbar">
+        <content>
+            <ToolbarSpacer id="toolBar" />
+            <Button
+                id="crearTemporada"
+                text="Crear Nueva Temporada"
+                press=".onCrearTemporada"
+            />
+        </content>
+    </Toolbar>
+
+    <!-- ... -->
+
+    <Dialog
+        id="crearTemporadaDialog"
+        title="Crear Nueva Temporada"
+        contentWidth="500px"
+        afterClose=".onCrearTemporadaDialogClose"
+        class="myDialog"
+    >
+        <content>
+            <Panel id="_IDGenPanel1">
+                <Label
+                    class="LabelWithInput"
+                    id="Labelid"
+                    text="ID"
+                />
+                <Input
+                    id="id"
+                    value="{id}"
+                />
+
+                <Label
+                    class="LabelWithInput"
+                    id="labelInicio1"
+                    text="Fecha de inicio"
+                />
+                <DatePicker
+                    id="inicio"
+                    value="{start_date}"
+                />
+
+                <Label
+                    class="LabelWithInput"
+                    id="labelFIN"
+                    text="Fecha de fin"
+                />
+                <DatePicker
+                    id="fin"
+                    value="{end_date}"
+                />
+                <Label
+                    class="LabelWithInput"
+                    id="temporada1"
+                    text="Número de temporada"
+                />
+                <Input
+                    id="inputTemporada"
+                    value="{season_number}"
+                />
+            </Panel>
+            <Panel id="_IDGenPanel2">
+                <content>
+                    <HBox id="_IDGenHBox1">
+                        <items>
+                            <Button
+                                id="buttonCrear"
+                                text="Crear"
+                                press=".onSubmit"
+                                class="dialogButton"
+                            />
+                            <Button
+                                id="buttonCancel"
+                                text="Cancelar"
+                                press=".onCrearTemporadaDialogClose"
+                                class="dialogButton"
+                            />
+                        </items>
+                    </HBox>
+                </content>
+            </Panel>
+        </content>
+    </Dialog>
+
     <table:Table
+        enableSelectAll="false"
         id="myTable"
         rows="{/Season}"
+        selectionMode="None"
     >
         <table:columns>
             <table:Column id="temporada">
@@ -24,6 +110,7 @@
                     />
                 </table:template>
             </table:Column>
+
             <table:Column id="columnaInicio">
                 <Label
                     id="labelInicio"
@@ -32,10 +119,17 @@
                 <table:template>
                     <Text
                         id="textInicio"
-                        text="{start_date}"
+                        text="{
+                path: 'start_date',
+                type: 'sap.ui.model.type.Date',
+                formatOptions: {
+                    pattern: 'yyyy-MM-dd'
+                }
+            }"
                     />
                 </table:template>
             </table:Column>
+
             <table:Column id="columnaFin">
                 <Label
                     id="labelFin"
@@ -44,15 +138,27 @@
                 <table:template>
                     <Text
                         id="textFin"
-                        text="{end_date}"
+                        text="{
+                path: 'end_date',
+                type: 'sap.ui.model.type.Date',
+                formatOptions: {
+                    pattern: 'yyyy-MM-dd'
+                }
+            }"
                     />
                 </table:template>
             </table:Column>
 
             <table:Column id="columnStatus">
-                <Label id="labelStatus" text="Status" />
+                <Label
+                    id="labelStatus"
+                    text="Status"
+                />
                 <table:template>
-                    <Text id="textStatus" text="{status}">
+                    <Text
+                        id="textStatus"
+                        text="{status}"
+                    >
                         <customData>
                             <core:CustomData
                                 key="status"
@@ -70,14 +176,16 @@
                     text="Acciones"
                 />
                 <table:template>
-                    <flexbox:HBox id="flexbox" justifyContent="SpaceBetween">
+                    <flexbox:HBox
+                        id="flexbox"
+                        justifyContent="SpaceBetween"
+                    >
                         <items>
                             <Button
                                 id="buttonAcciones"
                                 text="{= ${status} === 'abierta' ? 'Cerrar' : 'Abrir'}"
                                 press=".onButtonPress"
-                            >
-                            </Button>
+                            />
                             <Button
                                 id="buttonEliminar"
                                 icon="sap-icon://delete"
@@ -87,7 +195,6 @@
                     </flexbox:HBox>
                 </table:template>
             </table:Column>
-
         </table:columns>
     </table:Table>
 </mvc:View>

@@ -96,6 +96,9 @@
         id="myTable"
         rows="{/Season}"
         selectionMode="None"
+        class="myTable"
+        visibleRowCountMode="Interactive"
+        visibleRowCount="20"
     >
         <table:columns>
             <table:Column id="temporada">

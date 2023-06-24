@@ -2,20 +2,99 @@
     controllerName="evaluatorweb.controller.Temporadas"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:table="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:flexbox="sap.m"
     displayBlock="true"
 >
-    
-        <List
-            id="Mylist"
-            items="{odataModel>/Season}"
-        >
-            <items>
-                <ObjectListItem
-                    id="myObjectListItem"
-                    title="{odataModel>id}"
-                    intro="{odataModel>year}"
+    <table:Table
+        id="myTable"
+        rows="{/Season}"
+    >
+        <table:columns>
+            <table:Column id="temporada">
+                <Label
+                    text="Temporada"
+                    id="labeltemporada"
                 />
-            </items>
-        </List>
+                <table:template>
+                    <Text
+                        id="nombreTemporada"
+                        text="{id}"
+                    />
+                </table:template>
+            </table:Column>
+            <table:Column id="columnaInicio">
+                <Label
+                    id="labelInicio"
+                    text="Fecha de inicio"
+                />
+                <table:template>
+                    <Text
+                        id="textInicio"
+                        text="{start_date}"
+                    />
+                </table:template>
+            </table:Column>
+            <table:Column id="columnaFin">
+                <Label
+                    id="labelFin"
+                    text="Fecha de fin"
+                />
+                <table:template>
+                    <Text
+                        id="textFin"
+                        text="{end_date}"
+                    />
+                </table:template>
+            </table:Column>
 
+            <table:Column id="columnStatus">
+                <Label id="labelStatus" text="Status" />
+                <table:template>
+                    <Text id="textStatus" text="{status}">
+                        <customData>
+                            <core:CustomData
+                                key="status"
+                                value="{status}"
+                                writeToDom="true"
+                            />
+                        </customData>
+                    </Text>
+                </table:template>
+            </table:Column>
+
+            <table:Column id="columnaAcciones">
+                <Label
+                    id="labelAcciones"
+                    text="Acciones"
+                />
+                <table:template>
+                    <flexbox:HBox id="flexbox" justifyContent="SpaceBetween">
+                        <items>
+                            <Button
+                                id="buttonAcciones"
+                                text="{= ${status} === 'abierta' ? 'Cerrar' : 'Abrir'}"
+                                press=".onButtonPress"
+                            >
+                                <customData>
+                                    <core:CustomData
+                                        key="status"
+                                        value="{status}"
+                                        writeToDom="true"
+                                    />
+                                </customData>
+                            </Button>
+                            <Button
+                                id="buttonEliminar"
+                                icon="sap-icon://delete"
+                                press=".onButtonEliminarPress"
+                            />
+                        </items>
+                    </flexbox:HBox>
+                </table:template>
+            </table:Column>
+
+        </table:columns>
+    </table:Table>
 </mvc:View>

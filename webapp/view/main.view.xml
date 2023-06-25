@@ -42,8 +42,10 @@
                 </Button>
             </tnt:ToolHeader>
         </tnt:header>
+
+
         <tnt:sideContent>
-            <tnt:SideNavigation id="_IDGenSideNavigation1" expanded="true" selectedKey="{data>/selectedKey}" itemSelect=".onItemSelect" class="miClasePersonalizada">
+            <tnt:SideNavigation id="_IDGenSideNavigation1" expanded="{data>/sideNavExpanded}" selectedKey="{data>/selectedKey}" itemSelect=".onItemSelect" class="miClasePersonalizada">
                 <tnt:NavigationList id="_IDGenNavigationList1" items="{path: 'data>/navigation'}">
                     <tnt:NavigationListItem id="_IDGenNavigationListItem1" text="{data>title}" icon="{data>icon}" enabled="{data>enabled}" expanded="{data>expanded}" items="{data>items}" key="{data>key}">
                         <tnt:NavigationListItem id="_IDGenNavigationListItem2" text="{data>title}" key="{data>key}" enabled="{data>enabled}" />
@@ -55,7 +57,10 @@
                     </tnt:NavigationList>
                 </tnt:fixedItem>
             </tnt:SideNavigation>
+            
         </tnt:sideContent>
+
+
         <tnt:mainContents>
             <NavContainer id="pageContainer" initialPage="Principal">
                 <pages>

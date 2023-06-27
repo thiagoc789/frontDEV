@@ -55,6 +55,10 @@ sap.ui.define([
     "use strict";
     return Controller.extend("evaluatorweb.controller.Temporadas", {
         onInit: function () {
+            var oButton = this.getView().byId("buttonCancel"); // reemplace "myButtonId" con el id real de tu botón
+
+            // Vincula la función al botón
+            oButton.attachPress(this.onCrearTemporadaDialogClose.bind(this));
             var that = this;
 
             this.bExisteTemporadaAbierta = false;
@@ -152,7 +156,6 @@ sap.ui.define([
             var oModel = this.getView().getModel()
             var oNewEntry = {};
             oNewEntry.id = this.getView().byId("id").getValue();
-
             oNewEntry.start_date = formatearFecha(this.getView().byId("inicio").getValue());
             oNewEntry.end_date = formatearFecha(this.getView().byId("fin").getValue());
             oNewEntry.season_number = this.getView().byId("inputTemporada").getValue();
@@ -179,6 +182,11 @@ sap.ui.define([
         },
 
         onCrearTemporadaDialogClose: function () {
+
+            this.getView().byId("id").setValue("");
+            this.getView().byId("inicio").setValue("");
+            this.getView().byId("fin").setValue("");
+            this.getView().byId("inputTemporada").setValue("")
             var oDialog = this.getView().byId("crearTemporadaDialog");
             oDialog.close();
         }

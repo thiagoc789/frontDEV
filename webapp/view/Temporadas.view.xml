@@ -133,7 +133,7 @@
                 </table:template>
             </table:Column>
 
-            <table:Column id="columnaFin">
+            <table:Column id="_IDGenColumn1">
                 <Label
                     id="labelFin"
                     text="Fecha de fin"

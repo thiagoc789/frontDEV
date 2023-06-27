@@ -7,6 +7,7 @@
     xmlns:flexbox="sap.m"
     displayBlock="true"
 >
+
     <Toolbar id="toolbar">
         <content>
             <ToolbarSpacer id="toolBar" />
@@ -98,8 +99,9 @@
         selectionMode="None"
         class="myTable"
         visibleRowCountMode="Interactive"
-        visibleRowCount="20"
+        visibleRowCount="15"
     >
+
         <table:columns>
             <table:Column id="temporada">
                 <Label

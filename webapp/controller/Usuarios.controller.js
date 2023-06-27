@@ -11,7 +11,13 @@ sap.ui.define([
         onInit: function () {
             var oButton = this.getView().byId("buttonCancel"); // reemplace "myButtonId" con el id real de tu botón
             oButton.attachPress(this.onCrearUsuarioDialogClose.bind(this));
+
+            var oSmartTable = this.getView().byId("LineItemsSmartTable"); // obtener la referencia de SmartTable
+            var oTable = oSmartTable.getTable(); // obtener la referencia de la tabla interna
+            oTable.setVisibleRowCountMode("Interactive")
+            oTable.setVisibleRowCount(15);
             
+
         },
 
         onOpenCreateDialog: function () {
@@ -57,6 +63,7 @@ sap.ui.define([
         onAfterRendering: function () {
             var oSmartTable = this.getView().byId("LineItemsSmartTable"); // obtener la referencia de SmartTable
             var oTable = oSmartTable.getTable(); // obtener la referencia de la tabla interna
+            
 
             // adjuntar el evento rowSelectionChange
             oTable.attachRowSelectionChange(function (oEvent) {

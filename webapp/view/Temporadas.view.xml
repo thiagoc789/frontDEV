@@ -7,7 +7,6 @@
     xmlns:flexbox="sap.m"
     displayBlock="true"
 >
-
     <Toolbar id="toolbar">
         <content>
             <ToolbarSpacer id="toolBar" />
@@ -33,11 +32,11 @@
                 <Label
                     class="LabelWithInput"
                     id="Labelid"
-                    text="ID"
+                    text="Descripcion"
                 />
                 <Input
-                    id="id"
-                    value="{id}"
+                    id="descripcion"
+                    value="{description}"
                 />
 
                 <Label
@@ -59,15 +58,28 @@
                     id="fin"
                     value="{end_date}"
                 />
-                <Label
-                    class="LabelWithInput"
-                    id="temporada1"
-                    text="Número de temporada"
-                />
-                <Input
-                    id="inputTemporada"
-                    value="{season_number}"
-                />
+                <VBox id="_IDGenVBox1">
+                    <Label
+                        class="LabelWithInput"
+                        id="temporada1"
+                        text="Número de temporada"
+                    />
+                    <Select
+                        id="inputTemporada"
+                        selectedKey="{season_number}"
+                    >
+                        <core:Item
+                            id="_IDGenItem1"
+                            key="1"
+                            text="1"
+                        />
+                        <core:Item
+                            id="_IDGenItem2"
+                            key="2"
+                            text="2"
+                        />
+                    </Select>
+                </VBox>
             </Panel>
             <Panel id="_IDGenPanel2">
                 <content>
@@ -101,22 +113,26 @@
         visibleRowCountMode="Interactive"
         visibleRowCount="15"
     >
-
         <table:columns>
             <table:Column id="temporada">
                 <Label
-                    text="Temporada"
+                    text="Descripcion"
                     id="labeltemporada"
                 />
                 <table:template>
                     <Text
-                        id="nombreTemporada"
-                        text="{id}"
+                        id="descripcionTemporada"
+                        text="{description}"
                     />
                 </table:template>
             </table:Column>
 
-            <table:Column id="columnaInicio">
+            <table:Column
+                id="columnaInicio"
+                autoResizable="true"
+                sortProperty="start_date"
+                sorted="true"
+            >
                 <Label
                     id="labelInicio"
                     text="Fecha de inicio"
@@ -125,17 +141,22 @@
                     <Text
                         id="textInicio"
                         text="{
-                path: 'start_date',
-                type: 'sap.ui.model.type.Date',
-                formatOptions: {
-                    pattern: 'yyyy-MM-dd'
-                }
-            }"
+            path: 'start_date',
+            type: 'sap.ui.model.type.Date',
+            formatOptions: {
+                pattern: 'yyyy-MM-dd'
+            }
+        }"
                     />
                 </table:template>
             </table:Column>
 
-            <table:Column id="_IDGenColumn1">
+            <table:Column
+                id="_IDGenColumn1"
+                autoResizable="true"
+                sortProperty="end_date"
+                sorted="true"
+            >
                 <Label
                     id="labelFin"
                     text="Fecha de fin"
@@ -154,7 +175,13 @@
                 </table:template>
             </table:Column>
 
-            <table:Column id="columnStatus">
+            <table:Column
+                id="columnStatus"
+                autoResizable="true"
+                filterProperty="status"
+                sortProperty="status"
+                sorted="true"
+            >
                 <Label
                     id="labelStatus"
                     text="Status"

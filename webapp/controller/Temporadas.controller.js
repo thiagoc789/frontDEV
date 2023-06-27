@@ -155,10 +155,10 @@ sap.ui.define([
         onSubmit: function () {
             var oModel = this.getView().getModel()
             var oNewEntry = {};
-            oNewEntry.id = this.getView().byId("id").getValue();
+            oNewEntry.description = this.getView().byId("descripcion").getValue();
             oNewEntry.start_date = formatearFecha(this.getView().byId("inicio").getValue());
             oNewEntry.end_date = formatearFecha(this.getView().byId("fin").getValue());
-            oNewEntry.season_number = this.getView().byId("inputTemporada").getValue();
+            oNewEntry.season_number = this.getView().byId("inputTemporada").getSelectedKey();
             oNewEntry.status = 'cerrada';
             oNewEntry.month = getMonth(this.getView().byId("inicio").getValue());
             oNewEntry.year = getYear(this.getView().byId("inicio").getValue());
@@ -167,10 +167,10 @@ sap.ui.define([
                 success: function () {
                     sap.m.MessageToast.show("Entrada creada con éxito");
                     var oDialog = this.getView().byId("crearTemporadaDialog");
-                    this.getView().byId("id").setValue("");
+                    this.getView().byId("descripcion").setValue("");
                     this.getView().byId("inicio").setValue("");
                     this.getView().byId("fin").setValue("");
-                    this.getView().byId("inputTemporada").setValue("");
+
                     oDialog.close();
 
                 }.bind(this),
@@ -183,10 +183,9 @@ sap.ui.define([
 
         onCrearTemporadaDialogClose: function () {
 
-            this.getView().byId("id").setValue("");
+            this.getView().byId("descripcion").setValue("");
             this.getView().byId("inicio").setValue("");
-            this.getView().byId("fin").setValue("");
-            this.getView().byId("inputTemporada").setValue("")
+
             var oDialog = this.getView().byId("crearTemporadaDialog");
             oDialog.close();
         }

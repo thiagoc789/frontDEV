@@ -82,27 +82,6 @@
                     baseSize="0%"
                 />
             </smartTable:layoutData>
-            <Table id="_IDGenTable1" sticky="ColumnHeaders,HeaderToolbar">
-                <columns>
-                    <Column id="_IDGenColumn1">
-                        <customData>
-                            <core:CustomData
-                                key="p13nData"
-                                value='\{"columnKey": "weight2", "leadingProperty": "weight", "columnIndex": 5}'
-                            />
-                        </customData>
-                        <Text id="_IDGenText1" text="Porcentaje" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem id="_IDGenColumnListItem1">
-                        <ObjectStatus id="_IDGenObjectStatus1"
-                            text="{path: 'weight', formatter: '.formatter.weightInPercentage'}"
-                            state="Success"
-                        />
-                    </ColumnListItem>
-                </items>
-            </Table>
         </smartTable:SmartTable>
     </VBox>
 
@@ -152,6 +131,7 @@
                 <Input
                     id="inputWeight"
                     value="{weight}"
+                    placeholder="%"
                 />
             </Panel>
             <Panel id="_IDGenPanel2">

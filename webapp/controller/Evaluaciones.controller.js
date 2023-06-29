@@ -47,7 +47,8 @@ sap.ui.define([
             oNewEntry.id = this.getView().byId("inputId").getValue();
             oNewEntry.name = this.getView().byId("inputName").getValue();
             oNewEntry.description = this.getView().byId("inputDescription").getValue();
-            oNewEntry.weight = this.getView().byId("inputWeight").getValue();
+            var sWeight = this.getView().byId("inputWeight").getValue();
+    oNewEntry.weight = sWeight ? parseFloat(sWeight) / 100 : 0;
 
             oModel.create("/Evaluation", oNewEntry, {
                 success: function () {

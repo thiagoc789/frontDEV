@@ -8,8 +8,7 @@
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:smartForm="sap.ui.comp.smartform"
-    xmlns:smartField="sap.ui.comp.smartfield"
-    
+    xmlns:smartField="sap.ui.comp.smartfield"   
 >
     <VBox
         id="_IDGenVBox1"

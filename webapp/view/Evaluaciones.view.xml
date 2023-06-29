@@ -1,7 +1,163 @@
-<mvc:View controllerName="evaluatorweb.controller.App"
+<mvc:View
+    controllerName="evaluatorweb.controller.Evaluaciones"
     xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    
-Evaluaciones
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"   
+>
+    <VBox
+        id="_IDGenVBox1"
+        fitContainer="true"
+    >
+        <smartFilterBar:SmartFilterBar
+            id="smartFilterBar"
+            entitySet="Evaluation"
+            persistencyKey="SmartFilter_Explored"
+            basicSearchFieldName="id"
+            enableBasicSearch="true"
+        >
+
+        
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration
+                    id="_IDGenControlConfiguration1"
+                >
+                    <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption id="_IDGenSelectOption1" />
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+            </smartFilterBar:controlConfiguration>
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartFilterBar:layoutData>
+                <FlexItemData
+                    id="_IDGenFlexItemData1"
+                    shrinkFactor="0"
+                />
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+        <smartTable:SmartTable
+            id="LineItemsSmartTable"
+            entitySet="Evaluation"
+            smartFilterId="smartFilterBar"
+            tableType="Table"
+            enableExport="true"
+            beforeExport="onBeforeExport"
+            useVariantManagement="true"
+            useTablePersonalisation="true"
+            header="Evaluaciones"
+            showRowCount="true"
+            enableAutoBinding="true"
+            class="sapUiResponsiveContentPadding"
+            enableAutoColumnWidth="true"
+            editTogglable="true"
+            app:useSmartToggle="true"
+            showFullScreenButton="true"
+            initialise=".onSmartTableInitialised"
+
+        >
+
+
+
+            <smartTable:customToolbar
+            >
+                <OverflowToolbar id="_IDGenOverflowToolbar1">
+                    <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+                    <Button
+                        id="_IDGenButton2"
+                        text="Crear"
+                        press="onOpenCreateDialog"
+                    />
+                                        <Button
+                        id="_IDGenButton3"
+                        text="Eliminar"
+                        press="onEliminarUsuario"
+                    />
+                </OverflowToolbar>
+            </smartTable:customToolbar>
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartTable:layoutData>
+                <FlexItemData
+                    id="_IDGenFlexItemData2"
+                    growFactor="1"
+                    baseSize="0%"
+                />
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
+    </VBox>
+
+    <Dialog
+        id="crearEvaluacionDialog"
+        title="Crear una nueva evaluación"
+        contentWidth="500px"
+        afterClose=".onCrearEvaluacionDialogClose"
+        class="myDialog"
+    >
+        <content>
+            <Panel id="_IDGenPanel1">
+                <Label
+                    class="LabelWithInput"
+                    id="Labelid"
+                    text="ID"
+                />
+                <Input
+                    id="inputId"
+                    value="{id}"
+                />
+
+                <Label
+                    class="LabelWithInput"
+                    id="labelNombre"
+                    text="Nombre"
+                />
+                <Input
+                    id="inputName"
+                    value="{name}"
+                />
+
+                <Label
+                    class="LabelWithInput"
+                    id="labelDescription"
+                    text="Descripción"
+                />
+                <Input
+                    id="inputDescription"
+                    value="{description}"
+                />
+                <Label
+                    class="LabelWithInput"
+                    id="labelDepartment"
+                    text="Peso"
+                />
+                <Input
+                    id="inputWeight"
+                    value="{weight}"
+                />
+            </Panel>
+            <Panel id="_IDGenPanel2">
+                <content>
+                    <HBox id="_IDGenHBox1">
+                        <items>
+                            <Button
+                                id="buttonCrear"
+                                text="Crear"
+                                press=".onSubmit"
+                                class="dialogButton"
+                            />
+                            <Button
+                                id="buttonCancel"
+                                text="Cancelar"
+                                press=".onCrearEvaluacionDialogClose"
+                                class="dialogButton"
+                            />
+                        </items>
+                    </HBox>
+                </content>
+            </Panel>
+        </content>
+    </Dialog>
 </mvc:View>

@@ -8,7 +8,9 @@
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:smartForm="sap.ui.comp.smartform"
-    xmlns:smartField="sap.ui.comp.smartfield"   
+    xmlns:smartField="sap.ui.comp.smartfield"
+    xmlns:core="sap.ui.core"
+    xmlns:table="sap.ui.table"
 >
     <VBox
         id="_IDGenVBox1"
@@ -21,8 +23,6 @@
             basicSearchFieldName="id"
             enableBasicSearch="true"
         >
-
-        
             <smartFilterBar:controlConfiguration>
                 <smartFilterBar:ControlConfiguration
                     id="_IDGenControlConfiguration1"
@@ -58,13 +58,8 @@
             app:useSmartToggle="true"
             showFullScreenButton="true"
             initialise=".onSmartTableInitialised"
-
         >
-
-
-
-            <smartTable:customToolbar
-            >
+            <smartTable:customToolbar>
                 <OverflowToolbar id="_IDGenOverflowToolbar1">
                     <ToolbarSpacer id="_IDGenToolbarSpacer2" />
                     <Button
@@ -72,7 +67,7 @@
                         text="Crear"
                         press="onOpenCreateDialog"
                     />
-                                        <Button
+                    <Button
                         id="_IDGenButton3"
                         text="Eliminar"
                         press="onEliminarUsuario"
@@ -87,6 +82,27 @@
                     baseSize="0%"
                 />
             </smartTable:layoutData>
+            <Table id="_IDGenTable1" sticky="ColumnHeaders,HeaderToolbar">
+                <columns>
+                    <Column id="_IDGenColumn1">
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"columnKey": "weight2", "leadingProperty": "weight", "columnIndex": 5}'
+                            />
+                        </customData>
+                        <Text id="_IDGenText1" text="Porcentaje" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1">
+                        <ObjectStatus id="_IDGenObjectStatus1"
+                            text="{path: 'weight', formatter: '.formatter.weightInPercentage'}"
+                            state="Success"
+                        />
+                    </ColumnListItem>
+                </items>
+            </Table>
         </smartTable:SmartTable>
     </VBox>
 

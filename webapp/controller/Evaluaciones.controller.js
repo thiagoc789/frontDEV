@@ -7,6 +7,14 @@ sap.ui.define([
     "use strict";
 
     return Controller.extend("evaluatorweb.controller.Evaluaciones", {
+        formatter: {
+            weightInPercentage: function(sWeight) {
+                if (!sWeight) {
+                    return "0%";
+                }
+                return parseFloat(sWeight * 100).toFixed(0) + "%";
+            }
+        },
         onInit: function() {
             var oButton = this.getView().byId("buttonCancel"); // reemplace "myButtonId" con el id real de tu botón
             oButton.attachPress(this.onCrearEvaluacionDialogClose.bind(this));

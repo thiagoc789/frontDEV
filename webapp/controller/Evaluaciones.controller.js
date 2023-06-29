@@ -69,24 +69,24 @@ sap.ui.define([
         },
 
         onEliminarUsuario: function () {
-            var oModel = this.getView().getModel(); // obtener la referencia del modelo
-            var oSmartTable = this.getView().byId("LineItemsSmartTable"); // obtener la referencia de SmartTable
-            var oTable = oSmartTable.getTable(); // obtener la referencia de la tabla interna
-            var aSelectedIndices = oTable.getSelectedIndices(); // obtener los índices de las filas seleccionadas
+            var oModel = this.getView().getModel(); // Obtener la referencia del modelo
+            var oSmartTable = this.getView().byId("LineItemsSmartTable"); // Obtener la referencia de SmartTable
+            var oTable = oSmartTable.getTable(); // Obtener la referencia de la tabla interna
+            var oTable = this.getView().byId("_IDGenTable1");
+            var aSelectedContexts = oTable.getSelectedContexts(); // Obtener los contextos de las filas seleccionadas
         
-            if (aSelectedIndices.length === 0) {
-                // No hay filas seleccionadas, no hay nada que eliminar
-                return;
-            }
-        
+            // Implementar la lógica de eliminar filas
             MessageBox.confirm("¿Estás seguro de que quieres eliminar las evaluaciones seleccionadas?", {
                 onClose: function (sButton) {
                     if (sButton === MessageBox.Action.OK) {
-                        aSelectedIndices.forEach(function (iIndex) {
-                            var sPath = oTable.getContextByIndex(iIndex).getPath();
+                        // Recorrer cada contexto seleccionado
+                        aSelectedContexts.forEach(function (oContext) {
+                            var sPath = oContext.sPath; // Obtener el path del contexto
+        
+                            // Eliminar el elemento en el modelo utilizando el path
                             oModel.remove(sPath, {
                                 success: function () {
-                                    MessageToast.show("Evaluación eliminada con exito");
+                                    MessageToast.show("Evaluación eliminada con éxito");
                                     oModel.refresh(true);
                                 },
                                 error: function (oError) {
@@ -97,7 +97,7 @@ sap.ui.define([
                     }
                 }
             });
-        },
+        }
 
     });
 });

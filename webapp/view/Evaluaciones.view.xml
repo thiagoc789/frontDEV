@@ -44,7 +44,7 @@
             id="LineItemsSmartTable"
             entitySet="Evaluation"
             smartFilterId="smartFilterBar"
-            tableType="Table"
+            tableType="ResponsiveTable"
             enableExport="true"
             beforeExport="onBeforeExport"
             useVariantManagement="true"
@@ -82,6 +82,28 @@
                     baseSize="0%"
                 />
             </smartTable:layoutData>
+
+             <Table id="_IDGenTable1" sticky="ColumnHeaders,HeaderToolbar" mode="MultiSelect">
+                <columns>
+                    <Column id="_IDGenColumn1">
+                        <customData>
+                            <core:CustomData
+                                key="p13nData"
+                                value='\{"columnKey": "weight", "leadingProperty": "weight", "columnIndex": 99}'
+                            />
+                        </customData>
+                        <Text id="_IDGenText1" text="Porcentaje" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="_IDGenColumnListItem1">
+                        <ObjectStatus id="_IDGenObjectStatus1"
+                            text="{path: 'weight', formatter: '.formatter.weightInPercentage'}"
+                            state="Success"
+                        />
+                    </ColumnListItem>
+                </items>
+            </Table>
         </smartTable:SmartTable>
     </VBox>
 

@@ -4,6 +4,7 @@
     xmlns:mvc="sap.ui.core.mvc"
     displayBlock="true"
     xmlns="sap.m"
+    xmlns:m="sap.m"
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
@@ -44,7 +45,7 @@
             id="LineItemsSmartTable"
             entitySet="Evaluation"
             smartFilterId="smartFilterBar"
-            tableType="ResponsiveTable"
+            tableType="Table"
             enableExport="true"
             beforeExport="onBeforeExport"
             useVariantManagement="true"
@@ -52,11 +53,12 @@
             header="Evaluaciones"
             showRowCount="true"
             enableAutoBinding="true"
-            class="sapUiResponsiveContentPadding"
+            class="sapUiResponsiveContentPadding myTableClass"
             enableAutoColumnWidth="true"
-            editTogglable="true"
+            editTogglable="false"
             app:useSmartToggle="true"
             showFullScreenButton="true"
+            editToggled=".onToggle"
             initialise=".onSmartTableInitialised"
         >
             <smartTable:customToolbar>
@@ -64,17 +66,18 @@
                     <ToolbarSpacer id="_IDGenToolbarSpacer2" />
                     <Button
                         id="_IDGenButton2"
-                        text="Crear"
                         press="onOpenCreateDialog"
+                        icon="sap-icon://add"
+                        tooltip="Añadir"
                     />
                     <Button
                         id="_IDGenButton3"
-                        text="Eliminar"
                         press="onEliminarUsuario"
+                        icon="sap-icon://delete"
+                        tooltip="Eliminar"
                     />
                 </OverflowToolbar>
             </smartTable:customToolbar>
-            <!-- layout data used to make the table growing but the filter bar fixed -->
             <smartTable:layoutData>
                 <FlexItemData
                     id="_IDGenFlexItemData2"
@@ -83,28 +86,29 @@
                 />
             </smartTable:layoutData>
 
-             <Table id="_IDGenTable1" sticky="ColumnHeaders,HeaderToolbar" mode="MultiSelect">
-                <columns>
-                    <Column id="_IDGenColumn1">
-                        <customData>
+            <table:Table id="_IDGenTable1" 
+				selectionMode="MultiToggle"
+				ariaLabelledBy="title"
+                >
+				<table:columns>
+					<table:Column id="_IDGenColumn1" width="11rem">
+                                            <table:customData>
                             <core:CustomData
                                 key="p13nData"
                                 value='\{"columnKey": "weight", "leadingProperty": "weight", "columnIndex": 99}'
                             />
-                        </customData>
-                        <Text id="_IDGenText1" text="Porcentaje" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem id="_IDGenColumnListItem1">
-                        <ObjectStatus id="_IDGenObjectStatus1"
-                            text="{path: 'weight', formatter: '.formatter.weightInPercentage'}"
-                            state="Success"
-                        />
-                    </ColumnListItem>
-                </items>
-            </Table>
+                        </table:customData>
+						<m:Label id="_IDGenLabel1" text="Peso" />
+						<table:template>
+							<m:Text id="_IDGenText1"  text="{path: 'weight', formatter: '.formatter.weightInPercentage'}" />
+						</table:template>
+					</table:Column>
+				</table:columns>
+			</table:Table>
+
         </smartTable:SmartTable>
+
+        
     </VBox>
 
     <Dialog

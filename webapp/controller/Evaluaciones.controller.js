@@ -68,26 +68,109 @@ sap.ui.define([
 
         },
 
-        onToggle: function (oEvt) {
 
-            var editable = this.getView().byId("LineItemsSmartTable").getEditable();
-            this.getView().getModel().setProperty("/smiEditable", editable);
-            console.log(oEvt)
-            console.log(editable)
 
+
+        onEditarEvaluacion: function () {
+            var oModel = this.getView().getModel();
+
+            oModel.read("/Evaluation", {
+                success: function (oData) {
+                    var aEntities = oData.results;
+
+                    var oComboBox = this.getView().byId("idComboBox");
+                    oComboBox.removeAllItems();
+                    aEntities.forEach(function (oEntity) {
+                        oComboBox.addItem(new sap.ui.core.Item({
+                            key: oEntity.id,
+                            text: oEntity.id
+                        }));
+                    });
+
+                    var oDialog = this.byId("editarEvaluacionDialog");
+                    oDialog.open();
+                }.bind(this),
+                error: function () {
+                    MessageToast.show("Error al cargar los datos.");
+                }
+            });
         },
 
-        onEliminarUsuario: function () {
+        onSubmitEdit: function() {
+            var oModel = this.getView().getModel();
+        
+            // Obtenemos el ID de la entidad seleccionada
+            var sId = this.getView().byId("idComboBox").getSelectedKey();
+        
+            // Creamos un objeto con los nuevos datos de la entidad
+            var oNewData = {};
+            oNewData.name = this.getView().byId("inputNameEdit").getValue();
+            oNewData.description = this.getView().byId("inputDescriptionEdit").getValue();
+            var sWeight = this.getView().byId("inputWeightEdit").getValue();
+            oNewData.weight = sWeight ? parseFloat(sWeight) / 100 : 0;
+        
+            // Actualizamos la entidad
+            var sPath = "/Evaluation('" + sId + "')";
+            oModel.update(sPath, oNewData, {
+                success: function() {
+                    MessageToast.show("Evaluación editada con éxito");
+                    // Limpiamos los campos del diálogo y lo cerramos
+                    this.getView().byId("idComboBox").setValue("");
+                    this.getView().byId("inputNameEdit").setValue("");
+                    this.getView().byId("inputDescriptionEdit").setValue("");
+                    this.getView().byId("inputWeightEdit").setValue("");
+                    var oDialog = this.getView().byId("editarEvaluacionDialog");
+                    oDialog.close();
+                }.bind(this),
+                error: function() {
+                    MessageToast.show("Error al editar la evaluación.");
+                }
+            });
+        },
+        
+        onIdChange: function (oEvent) {
+            var oComboBox = oEvent.getSource();
+            var oSelectedItem = oComboBox.getSelectedItem();
+            if (oSelectedItem) {
+                var oModel = this.getView().getModel();
+                var sPath = "/Evaluation('" + oSelectedItem.getKey() + "')";
+                oModel.read(sPath, {
+                    success: function (oData) {
+                        var oEntity = oData;
+                        this.getView().byId("inputNameEdit").setValue(oEntity.name);
+                        this.getView().byId("inputDescriptionEdit").setValue(oEntity.description);
+                        this.getView().byId("inputWeightEdit").setValue((oEntity.weight * 100).toFixed(0) + "%");
+
+                    }.bind(this),
+                    error: function () {
+                        MessageToast.show("Error al cargar los datos de la entidad.");
+                    }
+                });
+            }
+        },
+
+
+        onCrearEvaluacionDialogClose2: function () {
+            this.getView().byId("idComboBox").setValue("");
+            this.getView().byId("inputNameEdit").setValue("");
+            this.getView().byId("inputDescriptionEdit").setValue("");
+            this.getView().byId("inputWeightEdit").setValue("")
+            var oDialog = this.getView().byId("editarEvaluacionDialog");
+            oDialog.close();
+        },
+
+
+        onEliminarEvaluacion: function () {
             var oModel = this.getView().getModel(); // obtener la referencia del modelo
             var oSmartTable = this.getView().byId("LineItemsSmartTable"); // obtener la referencia de SmartTable
             var oTable = oSmartTable.getTable(); // obtener la referencia de la tabla interna
             var aSelectedIndices = oTable.getSelectedIndices(); // obtener los índices de las filas seleccionadas
-        
+
             if (aSelectedIndices.length === 0) {
                 // No hay filas seleccionadas, no hay nada que eliminar
                 return;
             }
-        
+
             MessageBox.confirm("¿Estás seguro de que quieres eliminar las evaluaciones seleccionadas?", {
                 onClose: function (sButton) {
                     if (sButton === MessageBox.Action.OK) {

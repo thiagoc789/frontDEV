@@ -8,8 +8,6 @@
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    xmlns:smartForm="sap.ui.comp.smartform"
-    xmlns:smartField="sap.ui.comp.smartfield"
     xmlns:core="sap.ui.core"
     xmlns:table="sap.ui.table"
 >
@@ -71,8 +69,14 @@
                         tooltip="Añadir"
                     />
                     <Button
+                        id="_IDGenButton5"
+                        press="onEditarEvaluacion"
+                        icon="sap-icon://edit"
+                        tooltip="Editar"
+                    />
+                    <Button
                         id="_IDGenButton3"
-                        press="onEliminarUsuario"
+                        press="onEliminarEvaluacion"
                         icon="sap-icon://delete"
                         tooltip="Eliminar"
                     />
@@ -86,29 +90,36 @@
                 />
             </smartTable:layoutData>
 
-            <table:Table id="_IDGenTable1" 
-				selectionMode="MultiToggle"
-				ariaLabelledBy="title"
-                >
-				<table:columns>
-					<table:Column id="_IDGenColumn1" width="11rem">
-                                            <table:customData>
+            <table:Table
+                id="_IDGenTable1"
+                selectionMode="MultiToggle"
+                ariaLabelledBy="title"
+            >
+                <table:columns>
+                    <table:Column
+                        id="_IDGenColumn1"
+                        width="11rem"
+                    >
+                        <table:customData>
                             <core:CustomData
                                 key="p13nData"
                                 value='\{"columnKey": "weight", "leadingProperty": "weight", "columnIndex": 99}'
                             />
                         </table:customData>
-						<m:Label id="_IDGenLabel1" text="Peso" />
-						<table:template>
-							<m:Text id="_IDGenText1"  text="{path: 'weight', formatter: '.formatter.weightInPercentage'}" />
-						</table:template>
-					</table:Column>
-				</table:columns>
-			</table:Table>
-
+                        <m:Label
+                            id="_IDGenLabel1"
+                            text="Peso"
+                        />
+                        <table:template>
+                            <m:Text
+                                id="_IDGenText1"
+                                text="{path: 'weight', formatter: '.formatter.weightInPercentage'}"
+                            />
+                        </table:template>
+                    </table:Column>
+                </table:columns>
+            </table:Table>
         </smartTable:SmartTable>
-
-        
     </VBox>
 
     <Dialog
@@ -181,5 +192,65 @@
                 </content>
             </Panel>
         </content>
+    </Dialog>
+    <Dialog
+        id="editarEvaluacionDialog"
+        title="Editar Evaluación"
+    >
+        <content>
+            <Panel id="_IDGenPanel3">
+                <VBox id="_IDGenVBox2">
+                    <ComboBox
+                        id="idComboBox"
+                        placeholder="Selecciona un ID"
+                        change="onIdChange"
+                        selectedKey="selectedItem"
+                    />
+                    <Label
+                        class="LabelWithInput"
+                        id="labelNombre2"
+                        text="Nombre"
+                    />
+                    <Input
+                        id="inputNameEdit"
+                        type="Text"
+                    />
+                    <Label
+                        class="LabelWithInput"
+                        id="labelDescription2"
+                        text="Descripción"
+                    />
+                    <Input
+                        id="inputDescriptionEdit"
+                        type="Text"
+                    />
+                    <Label
+                        class="LabelWithInput"
+                        id="labelWeight"
+                        text="Peso"
+                    />
+                    <Input
+                        id="inputWeightEdit"
+                        type="Text"
+                        placeholder="%"
+                    />
+                </VBox>
+            </Panel>
+        </content>
+
+        <beginButton>
+            <Button
+                id="_IDGenButton6"
+                text="Guardar"
+                press="onSubmitEdit"
+            />
+        </beginButton>
+        <endButton>
+            <Button
+                id="_IDGenButton7"
+                text="Cancelar"
+                press="onCrearEvaluacionDialogClose2"
+            />
+        </endButton>
     </Dialog>
 </mvc:View>

@@ -1,31 +1,191 @@
 <mvc:View
-	controllerName="evaluatorweb.controller.App"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:grid="sap.ui.layout.cssgrid"
-	xmlns:f="sap.f">
-	<Slider value="100" liveChange="onSliderMoved" />
-	<Panel id="panelForGridList" backgroundDesign="Transparent">
-		<headerToolbar>
-			<Toolbar height="3rem">
-				<Title text="GridList with default grid layout" />
-			</Toolbar>
-		</headerToolbar>
+    controllerName="evaluatorweb.controller.Empleados"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:f="sap.f"
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
 
-		<f:GridList
-			id="gridList"
-			headerText="GridList header"
-			items="{/items}">
-			<f:GridListItem>
-				<VBox class="sapUiSmallMargin">
-					<layoutData>
-						<FlexItemData growFactor="1" shrinkFactor="0" /> <!-- Don't shrink below minimum size. Fill space if available. -->
-					</layoutData>
+<FlexBox id="_IDGenFlexBox1" justifyContent="End" alignItems="Center" width="100%" >
+    <items>
+        <SegmentedButton id="SB1" selectionChange="onToggleView" class="SB1">
+            <items>
+                <SegmentedButtonItem id="_IDGenSegmentedButtonItem1" icon="sap-icon://grid" />
+                <SegmentedButtonItem id="_IDGenSegmentedButtonItem2" icon="sap-icon://table-view" />
+            </items>
+        </SegmentedButton>
+    </items>
+</FlexBox>
 
-					<Title text="{title}" wrapping="true" />
-					<Label text="{subtitle}" wrapping="true" />
-				</VBox>
-			</f:GridListItem>
-		</f:GridList>
-	</Panel>
+
+        <f:GridList
+            id="gridList"
+            headerText="Empleados"
+            mode="None"
+            items="{ path: '/Empleado' }"
+            selectionChange="onSelectionChange"
+            delete="onDelete"
+            class="sapUiResponsiveContentPadding"
+            visible="true"
+        >
+            <f:customLayout>
+                <grid:GridBasicLayout
+                    id="_IDGenGridBasicLayout1"
+                    gridTemplateColumns="repeat(auto-fit, minmax(20rem, 1fr))"
+                    gridGap="0.5rem"
+                />
+            </f:customLayout>
+
+            <f:GridListItem
+                id="_IDGenGridListItem1"
+                detailPress="onDetailPress"
+                press="onPress"
+                counter="{Quantity}"
+                type="Navigation"
+            >
+                <VBox
+                    id="_IDGenVBox1"
+                    height="100%"
+                >
+                    <Image
+                        id="_IDGenImage1"
+                        src="{ProductPicUrl}"
+                        width="100%"
+                        visible="{= ${onlyImage} ? true : false }"
+                        class="imageDisplayBlock"
+                    />
+                    <HBox
+                        id="_IDGenHBox1"
+                        height="100%"
+                        class="sapUiSmallMargin"
+                        alignItems="Center"
+                        visible="{= ${onlyImage} ? false : true }"
+                    >
+                        <Image
+                            id="_IDGenImage2"
+                            src="https://cdn-icons-png.flaticon.com/512/219/219986.png"
+                            width="3rem"
+                            class="sapUiSmallMarginEnd"
+                        />
+                        <VBox id="_IDGenVBox2">
+                            <Title
+                                id="_IDGenTitle1"
+                                text="{First_Name} {Last_Name}"
+                                wrapping="true"
+                            />
+                            <Label
+                                id="_IDGenLabel2"
+                                text="Documento: {Document_ID}"
+                                wrapping="true"
+                            />
+
+                            <Label
+                                id="_IDGenLabel3"
+                                text="Cedula Ingenio: {Cedula_Ingenio}"
+                                wrapping="true"
+                            />
+                        </VBox>
+                    </HBox>
+                    <Panel id="_IDGenPanel1">
+                        <VBox id="_IDGenVBox3">
+                            <Label
+                                id="_IDGenLabel4"
+                                text="Contrato: {Contract_Description}"
+                                wrapping="true"
+                            />
+                            <Label
+                                id="_IDGenLabel5"
+                                text="Status: {Status}"
+                                wrapping="true"
+                            />
+                        </VBox>
+                    </Panel>
+                </VBox>
+            </f:GridListItem>
+        </f:GridList>
+
+    <VBox
+        id="_IDGenVBox5"
+        fitContainer="true"
+        visible="false"
+    >
+        <smartFilterBar:SmartFilterBar
+            id="smartFilterBar"
+            entitySet="Evaluation"
+            persistencyKey="SmartFilter_Explored"
+            basicSearchFieldName="id"
+            enableBasicSearch="true"
+        >
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration
+                    id="_IDGenControlConfiguration1"
+                >
+                    <smartFilterBar:defaultFilterValues>
+                        <smartFilterBar:SelectOption id="_IDGenSelectOption1" />
+                    </smartFilterBar:defaultFilterValues>
+                </smartFilterBar:ControlConfiguration>
+            </smartFilterBar:controlConfiguration>
+            <!-- layout data used to make the table growing but the filter bar fixed -->
+            <smartFilterBar:layoutData>
+                <FlexItemData
+                    id="_IDGenFlexItemData1"
+                    shrinkFactor="0"
+                />
+            </smartFilterBar:layoutData>
+        </smartFilterBar:SmartFilterBar>
+        <smartTable:SmartTable
+            id="LineItemsSmartTable"
+            entitySet="Evaluation"
+            smartFilterId="smartFilterBar"
+            tableType="Table"
+            enableExport="true"
+            beforeExport="onBeforeExport"
+            useVariantManagement="true"
+            useTablePersonalisation="true"
+            header="Evaluaciones"
+            showRowCount="true"
+            enableAutoBinding="true"
+            class="sapUiResponsiveContentPadding myTableClass"
+            enableAutoColumnWidth="true"
+            editTogglable="false"
+            app:useSmartToggle="true"
+            showFullScreenButton="true"
+            editToggled=".onToggle"
+            initialise=".onSmartTableInitialised"
+        >
+            <smartTable:customToolbar>
+                <OverflowToolbar id="_IDGenOverflowToolbar1">
+                    <ToolbarSpacer id="_IDGenToolbarSpacer2" />
+                    <Button
+                        id="_IDGenButton2"
+                        press="onOpenCreateDialog"
+                        icon="sap-icon://add"
+                        tooltip="Añadir"
+                    />
+                    <Button
+                        id="_IDGenButton5"
+                        press="onEditarEvaluacion"
+                        icon="sap-icon://edit"
+                        tooltip="Editar"
+                    />
+                    <Button
+                        id="_IDGenButton3"
+                        press="onEliminarEvaluacion"
+                        icon="sap-icon://delete"
+                        tooltip="Eliminar"
+                    />
+                </OverflowToolbar>
+            </smartTable:customToolbar>
+            <smartTable:layoutData>
+                <FlexItemData
+                    id="_IDGenFlexItemData2"
+                    growFactor="1"
+                    baseSize="0%"
+                />
+            </smartTable:layoutData>
+        </smartTable:SmartTable>
+    </VBox>
 </mvc:View>

@@ -3,7 +3,9 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     "sap/ui/model/json/JSONModel",
-], function (Controller, MessageToast, MessageBox, JSONModel) {
+    "sap/m/Text",
+    "sap/m/SegmentedButtonItem",
+], function (Controller, MessageToast, MessageBox, JSONModel, Text, SegmentedButtonItem) {
     "use strict";
 
     return Controller.extend("evaluatorweb.controller.Evaluaciones", {
@@ -22,8 +24,87 @@ sap.ui.define([
             var oSmartTable = this.getView().byId("LineItemsSmartTable"); // obtener la referencia de SmartTable
             var oTable = oSmartTable.getTable(); // obtener la referencia de la tabla interna
 
+            var oDataModel = this.getOwnerComponent().getModel();
+            var oSegmentedButton = this.getView().byId("SB2");
 
+            oDataModel.read("/Evaluation", {
+                success: function (oData, response) {
+                    var aEvaluations = oData.results;
+
+                    for (var i = 0; i < aEvaluations.length; i++) {
+                        var oTable = new sap.ui.table.Table({
+                            title: aEvaluations[i].name,
+                            visible: i === 0
+                        });
+
+                        oTable.addColumn(new sap.ui.table.Column({
+                            label: "Metrica",
+                            template: new Text().bindText("metric")
+                        }));
+
+                        oTable.addColumn(new sap.ui.table.Column({
+                            label: "Descripion",
+                            template: new Text().bindText("description")
+                        }));
+
+                        oTable.addColumn(new sap.ui.table.Column({
+                            label: "Peso",
+                            template: new Text().bindText({
+                                path: "weight",
+                                formatter: function (fValue) {
+                                    return (fValue * 100).toFixed(0) + "%";
+                                }
+                            })
+                        }));
+
+                        oTable.bindRows({
+                            path: "/EvaluationFormat",
+                            filters: [new sap.ui.model.Filter("id_evaluation_id", sap.ui.model.FilterOperator.EQ, aEvaluations[i].id)]
+                        });
+
+                        oTable.setModel(oDataModel);
+                    
+                        this.getView().byId("content").addItem(oTable);
+                        this.getView().byId("content").setVisible(false)
+                        this.getView().byId("_IDGenFlexBox2").setVisible(false)
+
+                        var oSegmentedButtonItem = new SegmentedButtonItem({
+                            text: aEvaluations[i].name,
+                            key: i  // La clave es el índice de la tabla
+                        });
+                        oSegmentedButton.addItem(oSegmentedButtonItem);
+                        
+                    }
+                }.bind(this)
+            });
         },
+  
+        onEvalSelect: function (oEvent) {
+            var oSegmentedButton = oEvent.getSource();
+            var sKey = oSegmentedButton.getSelectedKey();       
+            var oContent = this.getView().byId("content");
+            var aTables = oContent.getItems();
+            for (var i = 0; i < aTables.length; i++) {
+                aTables[i].setVisible(i.toString() === sKey);
+            }
+        },
+        
+
+        onToggleView: function() {
+			var oGridList = this.getView().byId("LineItemsSmartTable");
+			var oSmartTable = this.getView().byId("content");
+			var oButton = this.getView().byId("btnToggle");
+			
+			if (oGridList.getVisible()) {
+				oGridList.setVisible(false);
+                this.getView().byId("_IDGenFlexBox2").setVisible(true)
+				oSmartTable.setVisible(true);
+			} else {
+				oGridList.setVisible(true);
+                this.getView().byId("_IDGenFlexBox2").setVisible(false)
+				oSmartTable.setVisible(false);
+			}
+		},
 
         onOpenCreateDialog: function () {
 

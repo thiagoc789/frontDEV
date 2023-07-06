@@ -114,9 +114,9 @@
     >
         <smartFilterBar:SmartFilterBar
             id="smartFilterBar"
-            entitySet="Evaluation"
+            entitySet="Empleado"
             persistencyKey="SmartFilter_Explored"
-            basicSearchFieldName="id"
+            basicSearchFieldName="SAP_Number"
             enableBasicSearch="true"
         >
             <smartFilterBar:controlConfiguration>
@@ -138,14 +138,14 @@
         </smartFilterBar:SmartFilterBar>
         <smartTable:SmartTable
             id="LineItemsSmartTable"
-            entitySet="Evaluation"
+            entitySet="Empleado"
             smartFilterId="smartFilterBar"
             tableType="Table"
             enableExport="true"
             beforeExport="onBeforeExport"
             useVariantManagement="true"
             useTablePersonalisation="true"
-            header="Evaluaciones"
+            header="Empleados"
             showRowCount="true"
             enableAutoBinding="true"
             class="sapUiResponsiveContentPadding myTableClass"

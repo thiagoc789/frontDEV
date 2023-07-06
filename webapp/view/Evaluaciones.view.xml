@@ -10,31 +10,35 @@
     xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns:core="sap.ui.core"
     xmlns:table="sap.ui.table"
-><Panel id="panel" class="panelTransparente">
-    <FlexBox
-        id="_IDGenFlexBox1"
-        justifyContent="End"
-        width="99%"
+>
+    <Panel
+        id="panel"
+        class="panelTransparente"
     >
-        <items>
-            <SegmentedButton
-                id="SB1"
-                selectionChange="onToggleView"
-                class="customSegmentedButton2"
-            >
-                <items>
-                    <SegmentedButtonItem
-                        id="_IDGenSegmentedButtonItem1"
-                        icon="sap-icon://survey"
-                    />
-                    <SegmentedButtonItem
-                        id="_IDGenSegmentedButtonItem2"
-                        icon="sap-icon://compare"
-                    />
-                </items>
-            </SegmentedButton>
-        </items>
-    </FlexBox>
+        <FlexBox
+            id="_IDGenFlexBox1"
+            justifyContent="End"
+            width="99%"
+        >
+            <items>
+                <SegmentedButton
+                    id="SB1"
+                    selectionChange="onToggleView"
+                    class="customSegmentedButton2"
+                >
+                    <items>
+                        <SegmentedButtonItem
+                            id="_IDGenSegmentedButtonItem1"
+                            icon="sap-icon://survey"
+                        />
+                        <SegmentedButtonItem
+                            id="_IDGenSegmentedButtonItem2"
+                            icon="sap-icon://compare"
+                        />
+                    </items>
+                </SegmentedButton>
+            </items>
+        </FlexBox>
     </Panel>
     <VBox
         id="_IDGenVBox1"
@@ -255,29 +259,101 @@
         </endButton>
     </Dialog>
 
-                <FlexBox
-                id="_IDGenFlexBox2"
-                justifyContent="End"
-                alignItems="Center"
-                width="99%"
+    <FlexBox
+        id="_IDGenFlexBox2"
+        justifyContent="End"
+        alignItems="Center"
+        width="99%"
+    >
+        <items>
+            <SegmentedButton
+                id="SB2"
+                selectionChange="onEvalSelect"
+                class="customSegmentedButton"
             >
-                <items>
-                    <SegmentedButton
-                        id="SB2"
-                        selectionChange="onEvalSelect"
-                        class="customSegmentedButton"
-                    >
-                        <items />
-                    </SegmentedButton>
-                </items>
-            </FlexBox>
+                <items />
+            </SegmentedButton>
+        </items>
+    </FlexBox>
 
     <Panel
         id="_IDGenPanel4"
         class="Panel1"
     >
-        <VBox id="content">
-
-        </VBox>
+        <VBox id="content" />
     </Panel>
+    <Dialog
+        id="crearMetricaDialog"
+        title="Crear Metrica"
+    >
+        <Input
+            id="idEvaluacionInput"
+            value=""
+            editable="false"
+        />
+        <Input
+            id="metricaInput"
+            value=""
+            placeholder="Introduce la métrica..."
+        />
+        <Input
+            id="descripcionInput"
+            value=""
+            placeholder="Introduce la descripción..."
+        />
+        <Input
+            id="pesoInput"
+            value=""
+            type="Number"
+            placeholder="Introduce el peso..."
+        />
+        <Button
+            id="_IDGenButton8"
+            text="Guardar"
+            press=".onGuardarMetrica"
+        />
+        <Button
+            id="_IDGenButton9"
+            text="Cancelar"
+            press=".onCancelarMetrica"
+        />
+    </Dialog>
+
+     <Dialog
+        id="editarMetricaDialog"
+        title="Editar metrica"
+    >
+        <Input
+            id="idEvaluacionInputEditar"
+            value=""
+            editable="false"
+        />
+                    <ComboBox
+                        id="idComboBox2"
+                        placeholder="Selecciona un ID"
+                        change="onIdChange2"
+                        selectedKey="selectedItem"
+                    />
+        <Input
+            id="descripcionInputEditar"
+            value=""
+            placeholder="Introduce la descripción..."
+        />
+        <Input
+            id="pesoInputEditar"
+            value=""
+            placeholder="Introduce el peso..."
+        />
+        <Button
+            id="_IDGenButton20"
+            text="Guardar"
+            press=".onGuardarMetrica"
+        />
+        <Button
+            id="_IDGenButton10"
+            text="Cancelar"
+            press=".onCancelarEditarMetrica"
+        />
+    </Dialog>
+
 </mvc:View>

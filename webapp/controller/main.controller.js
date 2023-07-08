@@ -6,6 +6,12 @@ sap.ui.define([
 
     return Controller.extend("evaluatorweb.controller.main", {
         onInit: function () {
+
+            var oModel = new sap.ui.model.json.JSONModel({
+                mainView: this.getView()
+            });
+            sap.ui.getCore().setModel(oModel, "global");
+
             var data = this.getOwnerComponent().getModel("data_model");
             this.getView().setModel(data, "data");
             this._setToggleButtonTooltip(!sap.ui.Device.system.desktop);
@@ -13,6 +19,7 @@ sap.ui.define([
             // Contrae el menú lateral por defecto
             this.byId("toolPage").setSideExpanded(false);
         },
+        
 
         onAfterRendering: function () {
             // Añade los controladores de eventos para los eventos de mouseover y mouseout

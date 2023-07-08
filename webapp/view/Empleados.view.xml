@@ -30,6 +30,7 @@
             delete="onDelete"
             class="sapUiResponsiveContentPadding"
             visible="true"
+
         >
             <f:customLayout>
                 <grid:GridBasicLayout

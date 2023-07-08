@@ -5,9 +5,10 @@
 sap.ui.define([
         "sap/ui/core/UIComponent",
         "sap/ui/Device",
-        "evaluatorweb/model/models"
+        "evaluatorweb/model/models",
+        "sap/ui/model/json/JSONModel"
     ],
-    function (UIComponent, Device, models) {
+    function (UIComponent, Device, models, JSONModel) {
         "use strict";
 
         return UIComponent.extend("evaluatorweb.Component", {
@@ -23,6 +24,11 @@ sap.ui.define([
             init: function () {
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
+                var oAppViewModel = {
+                    selectedEmployeeId: null
+                };
+                var oModel = new JSONModel(oAppViewModel);
+                this.setModel(oModel, "appView");
 
                 // enable routing
                 this.getRouter().initialize();

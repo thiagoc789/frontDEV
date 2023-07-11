@@ -3,6 +3,26 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
     
-Nueva Evaluacion
-{employeeId}
+    <Panel id="_IDGenPanel1">
+            <Button id="_IDGenButton1"
+                icon="sap-icon://nav-back"
+                press="onBack"
+            />
+            </Panel>
+
+        
+<ObjectHeader id="_IDGenObjectHeader1"
+			icon="https://cdn-icons-png.flaticon.com/512/3789/3789820.png"
+			iconDensityAware="false"
+			iconAlt="{employee>/First_Name} {employee>/Last_Name}"
+			imageShape="Circle"
+			responsive="true"
+			title="{employee>/First_Name} {employee>/Last_Name}"
+			intro="{employee>/SAP_Number}"
+			class="sapUiResponsivePadding--header" >
+				<ObjectAttribute id="_IDGenObjectAttribute1" title="Email address" text="{employee>/email}" active="true" />
+				<ObjectAttribute id="_IDGenObjectAttribute2" title="Office Phone" text="{employee>/phone}" />
+				<ObjectAttribute id="_IDGenObjectAttribute3" title="Functional Area" text="{employee>/functionalArea}" />
+		</ObjectHeader>
+
 </mvc:View>

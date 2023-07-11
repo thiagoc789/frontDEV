@@ -17,28 +17,21 @@ sap.ui.define([
 			var oComponent = this.getOwnerComponent();
 			oComponent.getModel("appView").setProperty("/selectedEmployeeId", employeeId);
 		
-			var oNavContainer = this.getView().getParent().getParent(); // Obtén el NavContainer desde la vista padre
+			var oNavContainer = this.getView().getParent().getParent();
 		
 			oNavContainer.attachAfterNavigate(function(oEvent) {
 				var oDetailPage = oEvent.getParameters().to;
 				var oDetailView = oDetailPage.getContent()[0];
 				var oDetailController = oDetailView.getController();
 		
-				oDetailController.loadEmployeeData();
+				if (typeof oDetailController.loadEmployeeData === "function") {
+					oDetailController.loadEmployeeData();
+				}
 			});
 		
 			oNavContainer.to("application-evaluatorweb-display-component---main--Detalle_Empleado");
 		},
 		
-		
-		
-		
-		
-		
-		
-
-
-
 		onToggleView: function () {
 			var oGridList = this.getView().byId("gridList");
 			var oSmartTable = this.getView().byId("_IDGenVBox5");
@@ -52,7 +45,6 @@ sap.ui.define([
 				oSmartTable.setVisible(false);
 			}
 		}
-
 
 	});
 });

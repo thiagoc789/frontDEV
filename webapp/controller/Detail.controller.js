@@ -25,13 +25,11 @@ sap.ui.define([
             });
         },
         
-        
-        
         onBack: function() {
-            var oMainView = sap.ui.getCore().getModel("global").getProperty("/mainView");
-            var oNavContainer = oMainView.byId("pageContainer");
+            var oNavContainer = this.getView().getParent().getParent();
             oNavContainer.back();
-        }
+        },
+        
     });
 });
 

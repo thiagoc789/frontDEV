@@ -9,20 +9,28 @@ sap.ui.define([
 		onInit: function () {
 
 		},
+
 		onPress: function (oEvent) {
 			var oItem = oEvent.getSource();
 			var employeeId = oItem.getBindingContext().getProperty("SAP_Number");
 		
-			// Obtén el componente de la aplicación.
 			var oComponent = this.getOwnerComponent();
-		
-			// Almacena el employeeId en el modelo del componente.
 			oComponent.getModel("appView").setProperty("/selectedEmployeeId", employeeId);
 		
-			var oMainView = sap.ui.getCore().getModel("global").getProperty("/mainView");
-			var oNavContainer = oMainView.byId("pageContainer");
+			var oNavContainer = this.getView().getParent().getParent(); // Obtén el NavContainer desde la vista padre
+		
+			oNavContainer.attachAfterNavigate(function(oEvent) {
+				var oDetailPage = oEvent.getParameters().to;
+				var oDetailView = oDetailPage.getContent()[0];
+				var oDetailController = oDetailView.getController();
+		
+				oDetailController.loadEmployeeData();
+			});
+		
 			oNavContainer.to("application-evaluatorweb-display-component---main--Detalle_Empleado");
 		},
+		
+		
 		
 		
 		

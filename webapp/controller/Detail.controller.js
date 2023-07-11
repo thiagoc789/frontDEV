@@ -17,7 +17,7 @@ sap.ui.define(
                 console.log(employeeId);
             
                 // Suponiendo que tienes un modelo OData llamado "odataModel"
-                var oDataModel = this.getOwnerComponent().getModel("odataModel");
+                var oDataModel = this.getOwnerComponent().getModel();
             
                 // Realiza una solicitud para obtener los datos del empleado
                 oDataModel.read("/Empleado("+employeeId+")", {

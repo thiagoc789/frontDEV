@@ -1,28 +1,50 @@
-<mvc:View controllerName="evaluatorweb.controller.Detail"
+<mvc:View
+    controllerName="evaluatorweb.controller.Detail"
     xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-    xmlns="sap.m">
-    
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
     <Panel id="_IDGenPanel1">
-            <Button id="_IDGenButton1"
-                icon="sap-icon://nav-back"
-                press="onBack"
+        <Button
+            id="_IDGenButton1"
+            icon="sap-icon://nav-back"
+            press="onBack"
+        />
+    </Panel>
+
+    <ObjectHeader
+        id="_IDGenObjectHeader1"
+        icon="https://cdn-icons-png.flaticon.com/512/3789/3789820.png"
+        iconDensityAware="false"
+        iconAlt="{employee>/First_Name} {employee>/Last_Name}"
+        imageShape="Circle"
+        responsive="true"
+        title="{employee>/First_Name} {employee>/Last_Name}"
+        intro="{employee>/SAP_Number}"
+        number="5"
+        class="sapUiResponsivePadding--header"
+    >
+        <statuses>
+            <ObjectStatus id="_IDGenObjectStatus1"
+                text="In Stock"
+                state="Success"
             />
-            </Panel>
-
-        
-<ObjectHeader id="_IDGenObjectHeader1"
-			icon="https://cdn-icons-png.flaticon.com/512/3789/3789820.png"
-			iconDensityAware="false"
-			iconAlt="{employee>/First_Name} {employee>/Last_Name}"
-			imageShape="Circle"
-			responsive="true"
-			title="{employee>/First_Name} {employee>/Last_Name}"
-			intro="{employee>/SAP_Number}"
-			class="sapUiResponsivePadding--header" >
-				<ObjectAttribute id="_IDGenObjectAttribute1" title="Email address" text="{employee>/email}" active="true" />
-				<ObjectAttribute id="_IDGenObjectAttribute2" title="Office Phone" text="{employee>/phone}" />
-				<ObjectAttribute id="_IDGenObjectAttribute3" title="Functional Area" text="{employee>/functionalArea}" />
-		</ObjectHeader>
-
+        </statuses>
+        <ObjectAttribute
+            id="_IDGenObjectAttribute1"
+            title="Descripción del contrato"
+            text="{employee>/Contract_Description}"
+        />
+        <ObjectAttribute
+            id="_IDGenObjectAttribute2"
+            title="Estado"
+            text="{employee>/Status}"
+        />
+        <ObjectAttribute
+            id="_IDGenObjectAttribute3"
+            title="Functional Area"
+            text="{employee>/functionalArea}"
+        />
+    </ObjectHeader>
 </mvc:View>
